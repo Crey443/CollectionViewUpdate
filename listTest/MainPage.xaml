@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:listTest.VeiwModels" xmlns:models="clr-namespace:listTest.Models"
+             x:Class="listTest.MainPage">
+
+
+    <ContentPage.BindingContext>
+        <viewmodels:MainViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <RefreshView Grid.Row="1"
+                         Grid.RowSpan="2"
+                         Command="{Binding RefreshCommand}"
+                         IsRefreshing="{Binding IsBusy, Mode=OneWay}">
+
+            <CollectionView x:Name="Collection"
+                                ItemsSource="{Binding Locations}"
+                                SelectionMode="Single"  
+                                BackgroundColor="Transparent"
+                                ItemsLayout="VerticalList">
+                <CollectionView.EmptyView>
+                    <StackLayout Padding="12">
+                        <Label HorizontalOptions="Center" Text="Keine Daten vorhanden!" TextColor="White"/>
+                    </StackLayout>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:MainModel">
+                        <Frame HeightRequest="260">
+                            <Grid>
+                                <Image Source="{Binding Image}"
+                                      Aspect="AspectFill"/>
+                                <Label Text="{Binding Name}"
+                                          FontSize="30"
+                                       TextColor="White"/>
+
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+    </ContentPage.Content>
+</ContentPage>
