@@ -23,6 +23,11 @@ namespace listTest.VeiwModels
             base.VModelActive(sender, eventArgs);
             var locs = new MainModel() { Image = "https://club-l1.de/wp-content/uploads/2019/11/dsc08645-1200x800.jpg", Name = "Test" };
             Locations.Add(locs);
+
+            foreach (MainModel loc in Locations)
+            {
+                loc.Name = "Update";
+            }
         }
 
         private async Task Refresh()
@@ -32,6 +37,11 @@ namespace listTest.VeiwModels
 
             var locs = new MainModel() { Image = "https://club-l1.de/wp-content/uploads/2019/11/dsc08645-1200x800.jpg", Name = "Test"};
             Locations.Add(locs);
+
+            foreach (MainModel loc in Locations)
+            {
+                loc.Name = "Update";
+            }
 
             IsBusy = false;
         }
